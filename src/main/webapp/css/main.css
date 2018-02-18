@@ -5,7 +5,36 @@
     font-size: 16px;
 }
 
-h1 {
-    font-size: 1.2em;
+#instructions {
     text-align: center;
+}
+
+#instructions h1 {
+    font-size: 2em;
+    color: #a20;
+    padding: 10px 0;
+}
+
+#instructions input[type=button] {
+    padding: 4px;
+    font-size: 1.4em;
+    margin: 8px;
+}
+
+#session-block {
+}
+
+#session-block table {
+    layout: fixed;
+    padding: 2px;
+    background: #ffe;
+    margin: auto;
+}
+
+#session-block table td {
+    min-width: 100px;
+    padding: 10px 14px;
+    background: #fea;
+    font-size: .9em;
+    color: #a72;
 }

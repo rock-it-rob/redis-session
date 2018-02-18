@@ -2,17 +2,17 @@ function createSession()
 {
     $.post(
         "/redis-session/v1/sessions/create",
-        getSessionId
+        getSessionInfo
     );
 }
 
-function getSessionId()
+function getSessionInfo()
 {
     $.getJSON(
         "/redis-session/v1/sessions/currentSession",
         function(data) {
-            $("#sessionId").text(data.id);
-            $("#servletContextId").text(data.servletContextId);
+            $("#session-id").text(data.id);
+            $("#servlet-context-id").text(data.servletContextId);
         }
     ).fail(function(jqxhr) {
         // ignore 404s.

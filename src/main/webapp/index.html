@@ -17,19 +17,25 @@
 </head>
 
 <body>
-<h1>Session Information</h1>
-<table class="session-table">
-    <tr>
-        <td>Create a new session:</td>
-        <td><input type="button" value="create" onclick="createSession()"/></td>
-    </tr>
-    <tr>
-        <td>Get current session id:</td>
-        <td><input type="button" value="get ID" onclick="getSessionId()"/></td>
-        <td><span id="sessionId"></span></td>
-        <td><span id="servletContextId"></span></td>
-    </tr>
-</table>
+
+<div id="session-block">
+    <table>
+        <tr>
+            <td>Session ID:</td>
+            <td><span id="session-id"></span></td>
+        </tr>
+        <tr>
+            <td>Servlet Context Hashcode:</td>
+            <td><span id="servlet-context-id"></span></td>
+        </tr>
+    </table>
+</div>
+
+<div id="instructions">
+    <h1>Step 1: Create a New HttpSession</h1>
+    <input type="button" value="Create Session" onclick="createSession()"/>
+</div>
+
 </body>
 
 </html>
