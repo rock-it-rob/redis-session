@@ -3,12 +3,32 @@
 <html>
 
 <head>
+
     <title>Test Page</title>
     <link rel="stylesheet" href="css/main.css"/>
+
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script src="js/session.js" type="text/javascript"></script>
+
 </head>
 
 <body>
-    <h1>Create a Session</h1>
+<h1>Session Information</h1>
+<table class="session-table">
+    <tr>
+        <td>Create a new session:</td>
+        <td><input type="button" value="create" onclick="createSession()"/></td>
+    </tr>
+    <tr>
+        <td>Get current session id:</td>
+        <td><input type="button" value="get ID" onclick="getSessionId()"/></td>
+        <td><span id="sessionId"></span></td>
+    </tr>
+</table>
 </body>
 
 </html>
