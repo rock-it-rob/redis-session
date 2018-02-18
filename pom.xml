@@ -11,6 +11,11 @@
 
     <packaging>war</packaging>
 
+    <properties>
+        <app.context>redis-session</app.context>
+        <http.port>8080</http.port>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -28,6 +33,15 @@
                 <version>3.7.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <context>/${app.context}</context>
+                    <port>${http.port}</port>
                 </configuration>
             </plugin>
         </plugins>
