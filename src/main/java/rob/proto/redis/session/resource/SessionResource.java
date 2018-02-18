@@ -2,6 +2,7 @@ package rob.proto.redis.session.resource;
 
 import rob.proto.redis.session.response.SessionResponse;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
@@ -13,6 +14,9 @@ import javax.ws.rs.core.Response;
 public class SessionResource
 {
     @Context
+    private ServletContext servletContext;
+
+    @Context
     private HttpServletRequest httpServletRequest;
 
     /**
@@ -22,7 +26,7 @@ public class SessionResource
      * session.
      */
     @GET
-    @Path("currentSessionId")
+    @Path("currentSession")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSessionId()
@@ -32,7 +36,7 @@ public class SessionResource
         {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok().entity(new SessionResponse(httpSession.getId())).build();
+        return Response.ok().entity(new SessionResponse(httpSession.getId(), servletContext.hashCode())).build();
     }
 
     /**

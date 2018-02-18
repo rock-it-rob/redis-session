@@ -9,9 +9,10 @@ function createSession()
 function getSessionId()
 {
     $.getJSON(
-        "/redis-session/v1/sessions/currentSessionId",
+        "/redis-session/v1/sessions/currentSession",
         function(data) {
             $("#sessionId").text(data.id);
+            $("#servletContextId").text(data.servletContextId);
         }
     ).fail(function(jqxhr) {
         // ignore 404s.
