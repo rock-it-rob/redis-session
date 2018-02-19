@@ -20,6 +20,7 @@
 
     <build>
         <plugins>
+            <!-- compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -29,6 +30,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!-- war -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -37,6 +39,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <!-- tomcat -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -44,7 +47,40 @@
                 <configuration>
                     <path>/${app.context}</path>
                     <port>${http.port}</port>
+                    <contextFile>${project.basedir}/src/main/webapp/META-INF/context.xml</contextFile>
+                    <useTestClasspath>true</useTestClasspath>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>reddison-tomcat</groupId>
+                        <artifactId>reddison-tomcat-7</artifactId>
+                        <version>3.6.1</version>
+                        <systemPath>${project.basedir}/ext/reddison-tomcat-7-3.6.1.jar</systemPath>
+                        <scope>system</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- redis -->
+            <plugin>
+                <groupId>ru.trylogic.maven.plugins</groupId>
+                <artifactId>redis-maven-plugin</artifactId>
+                <version>1.4.6</version>
+                <executions>
+                    <execution>
+                        <id>start-test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>shutdown</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -80,6 +116,12 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.6.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
